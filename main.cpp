@@ -7,7 +7,7 @@ using namespace std;
 
 /*
 	AR - Ejercicio de análisis RTO
-	Fernando Méndez Torrubiano (https://fernmend.ddns.net | @HumperCobra)
+	Fernando Méndez Torrubiano (https://fernmend.ddns.net)
 */
 
 //Constantes:
@@ -17,15 +17,15 @@ const int nSeries = 5;
 //Tipos:
 typedef struct {
 	double 
-		M, //Muestra.
-		RTTs, //RTTs.
-		D, //Desviación.
-		RTO_Jacobson, //RTO de Jacobson.
-		RTO_Jacobson_Karels; //RTO de Jacobson/Karels.
+		M, 			//Muestra.
+		RTTs, 			//RTTs.
+		D, 			//Desviación.
+		RTO_Jacobson, 		//RTO de Jacobson.
+		RTO_Jacobson_Karels; 	//RTO de Jacobson/Karels.
 } tDatos;
 typedef tDatos tListaDatos[nDatos];
 
-struct Comma final : std::numpunct<char>{ //Cambiar los '.' de los double por ','.
+struct Comma final : std::numpunct<char>{ //Cambia los '.' de los double por ','.
 	char do_decimal_point() const override { return ','; }
 };
 
@@ -100,11 +100,13 @@ void calcular(tListaDatos& _datos, string& fichero) {
 	double alpha = 0.125; // 1/8
 	double beta = 0.25; // 1/4
 	double gamma = 2;
-
+	
+	// Caso Base:
 	_datos[0].RTTs = _datos[0].M; //Calculamos RTTs de 0.
 	_datos[0].D = _datos[0].M / 2; //Calculamos la desviación de 0.
 	_datos[0].RTO_Jacobson = gamma * _datos[0].RTTs; //Calculamos RTO de Jacobson de 0.
 	_datos[0].RTO_Jacobson_Karels = _datos[0].RTTs + (4 * _datos[0].D); //Calculamos RTO de Jacobson/Karels de 0.
+	// Resto de casos:
 	for (int i = 1; i < nDatos; i++) {
 		_datos[i].RTTs = (((1 - alpha) * _datos[i - 1].RTTs) + (alpha * _datos[i].M)); //Calculamos RTTs de i.
 		_datos[i].RTO_Jacobson = gamma * _datos[i].RTTs; //Calculamos RTO de Jacobson de i.
