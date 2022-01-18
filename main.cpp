@@ -30,10 +30,10 @@ struct Comma final : std::numpunct<char>{ //Cambia los '.' de los double por ','
 };
 
 //Funciones:
-void inicializa(tListaDatos&); //Inicializa el array de datos.
-bool cargar(tListaDatos&, string&); //Carga los archivos de las series.
-void calcular(tListaDatos&, string&); //Calcula los resultados de los algoritmos de Jacobson y Jacobson/Karels.
-void guardar(tListaDatos&, string&); //Guarda los resultados de los algoritmos de Jacobson y Jacobson/Karels.
+void inicializa(tListaDatos&); 		//Inicializa el array de datos.
+bool cargar(tListaDatos&, string&); 	//Carga los archivos de las series.
+void calcular(tListaDatos&, string&); 	//Calcula los resultados de los algoritmos de Jacobson y Jacobson/Karels.
+void guardar(tListaDatos&, string&); 	//Guarda los resultados de los algoritmos de Jacobson y Jacobson/Karels.
 
 
 
